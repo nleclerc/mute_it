@@ -105,6 +105,7 @@ namespace mute_it
         {
             var device = getPrimaryMicDevice();
             updateMicStatus(device);
+            //System.GC.Collect();
         }
 
         private void updateMicStatus(MMDevice device)
@@ -122,6 +123,9 @@ namespace mute_it
             var enumerator = new MMDeviceEnumerator();
             var result = enumerator.GetDefaultAudioEndpoint(DataFlow.Capture, Role.Communications);
             enumerator.Dispose();
+
+            tbIcon.Text = result.DeviceFriendlyName;
+
             return result;
         }
 
