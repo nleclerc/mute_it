@@ -33,8 +33,8 @@ namespace mute_it
         {
             var manager = new HotkeyManager(this);
 
-            RegisterHotKey(manager.Handle, MUTE_CODE, Constants.ALT, (int)Keys.P);
-            RegisterHotKey(manager.Handle, UNMUTE_CODE, Constants.ALT, (int)Keys.O);
+            RegisterHotKey(manager.Handle, MUTE_CODE, Constants.SHIFT + Constants.ALT, (int)Keys.P);
+            RegisterHotKey(manager.Handle, UNMUTE_CODE, Constants.SHIFT + Constants.ALT, (int)Keys.O);
 
             return manager;
         }
