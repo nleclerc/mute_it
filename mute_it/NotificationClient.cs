@@ -17,7 +17,7 @@ class NotificationClient: NAudio.CoreAudioApi.Interfaces.IMMNotificationClient
 
     public void OnDefaultDeviceChanged(DataFlow dataFlow, Role deviceRole, string defaultDeviceId)
     {
-        // context.updatePrimaryMicDevice();
+        context.updatePrimaryMicDevice();
     }
 
     public void OnDeviceAdded(string deviceId)
