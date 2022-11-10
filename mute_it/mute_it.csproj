@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="HotkeyManager.cs" />
     <Compile Include="MuteItContext.cs" />
+    <Compile Include="NotificationClient.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
