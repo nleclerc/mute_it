@@ -77,8 +77,8 @@ namespace mute_it
         {
             var manager = new HotkeyManager(this);
 
-            RegisterHotKey(manager.Handle, MUTE_CODE, Constants.ALT + Constants.SHIFT, (int)Keys.P);
-            RegisterHotKey(manager.Handle, UNMUTE_CODE, Constants.ALT + Constants.SHIFT, (int)Keys.O);
+            RegisterHotKey(manager.Handle, MUTE_CODE, Constants.SHIFT + Constants.ALT, (int)Keys.P);
+            RegisterHotKey(manager.Handle, UNMUTE_CODE, Constants.SHIFT + Constants.ALT, (int)Keys.O);
 
             return manager;
         }
@@ -89,7 +89,7 @@ namespace mute_it
 
             var icon = new NotifyIcon();
             icon.Icon = Properties.Resources.mic_off;
-            icon.ContextMenu = new ContextMenu(new MenuItem[] {exitMenuItem});
+            icon.ContextMenu = new ContextMenu(new MenuItem[] { exitMenuItem });
             icon.DoubleClick += (source, e) => toggleMicStatus();
 
             return icon;
@@ -103,14 +103,35 @@ namespace mute_it
             }
         }
 
+        public bool getMicMuteStatus()
+        {
+            var device = getPrimaryMicDevice();
+            if (device != null)
+                return device.AudioEndpointVolume.Mute;
+            else
+                return false;
+        }
+
         public void muteMic()
         {
-            setMicMuteStatus(true);
+            if (!getMicMuteStatus())
+            {
+                setMicMuteStatus(true);
+                tbIcon.BalloonTipText = "Microphone succefully muted";
+                tbIcon.BalloonTipTitle = "MuteIt";
+                tbIcon.ShowBalloonTip(2000);
+            }
         }
 
         public void unmuteMic()
         {
-            setMicMuteStatus(false);
+            if (getMicMuteStatus())
+            {
+                setMicMuteStatus(false);
+                tbIcon.BalloonTipText = "Microphone succefully unmuted";
+                tbIcon.BalloonTipTitle = "MuteIt";
+                tbIcon.ShowBalloonTip(2000);
+            }
         }
 
         private void toggleMicStatus()
